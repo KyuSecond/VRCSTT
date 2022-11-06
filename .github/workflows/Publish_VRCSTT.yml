@@ -29,10 +29,10 @@ jobs:
           files: Program
           dest: VRCSTTv${{ github.run_number }}.zip
           
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with: 
           name: artifact
-          path: artifact.zip
+          path: artifacts/artifact.zip
       
   get_labels: 
     runs-on: windows-latest
