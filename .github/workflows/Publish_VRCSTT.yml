@@ -32,7 +32,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with: 
           name: artifact
-          path: artifacts/artifact.zip
+          path: VRCSTTv${{ github.run_number }}.zip
       
   get_labels: 
     runs-on: windows-latest
