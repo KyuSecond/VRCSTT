@@ -9,21 +9,9 @@ env:
   
   
 jobs: 
-  get_labels: 
-    runs-on: windows-latest
-    outputs: 
-      labels: ${{ steps.PR.outputs.pr_labels }}
-    steps:
-      - name: Get Current Pull Request
-        uses: 8BitJonny/gh-get-current-pr@2.1.3
-      - name: Echo output
-        env:
-          LAB: ${{ steps.PR.outputs.pr_labels }}
-        run: "echo $LAB"
-        
-        
   build: 
     runs-on: windows-latest
+    if: ${{ (github.event.pull_request.merged == true) && (contains(github.event.pull_request.labels.*.name, 'minor')) }}
     steps: 
       - uses: actions/checkout@v2
       
@@ -44,8 +32,7 @@ jobs:
    
   deploy:
     runs-on: windows-latest
-    needs: [build, get_labels]
-    if: contains('get_labels.deploy.outputs.labels', 'minor') == false
+    needs: [build]
     steps:
       - uses: actions/download-artifact@v2
         with:
