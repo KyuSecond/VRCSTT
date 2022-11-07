@@ -9,6 +9,14 @@ env:
   
   
 jobs: 
+  echo: 
+    runs-on: windows-latest
+    steps: 
+      - name: echo
+        env: 
+          LAB: ${{ github.event.pull_request.labels }}
+        run: "echo $LAB"
+        
   build: 
     runs-on: windows-latest
     if: ${{ (github.event.pull_request.merged == true) && (contains(github.event.pull_request.labels.*.name, 'minor')) }}
