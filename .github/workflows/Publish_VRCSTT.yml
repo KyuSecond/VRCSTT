@@ -1,8 +1,9 @@
 name: "Deploy VRCSTT"
 
 on:
-  push:
-    branches: [ "master" ]
+  pull_request:
+    types:
+      - closed
       
 env:
   PROJECT_PATH: VRCSTT.csproj
