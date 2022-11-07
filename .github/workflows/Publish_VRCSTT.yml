@@ -17,7 +17,9 @@ jobs:
       - name: Get Current Pull Request
         uses: 8BitJonny/gh-get-current-pr@2.1.3
       - name: Echo output
-        run: "echo ${{ steps.PR.outputs.pr_labels }}"
+        env:
+          LAB: ${{ steps.PR.outputs.pr_labels }}
+        run: "echo $LAB"
         
         
   build: 
